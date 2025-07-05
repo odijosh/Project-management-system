@@ -1,0 +1,91 @@
+<form [formGroup]="propertyForm" (ngSubmit)="onCreate()">
+  <div class="formwrapper">
+
+    
+    <div class="titlewrap">
+      <label>Title</label>
+      <input type="text" formControlName="title" />
+      <small *ngIf="propertyForm.get('title')?.invalid && (propertyForm.get('title')?.touched || submitted)">Title is required</small>
+    </div>
+
+
+    <div class="propwrap">
+      <label>Property Type</label>
+      <input type="text" formControlName="propertyType" />
+      <small *ngIf="propertyForm.get('propertyType')?.invalid && (propertyForm.get('propertyType')?.touched || submitted)">Property type is required</small>
+    </div>
+
+
+    <div class="locationwrapper">
+      <div class="innerlocationwrapper">
+        <label>Rooms</label>
+        <input type="text" formControlName="rooms" />
+        <small *ngIf="propertyForm.get('rooms')?.invalid && (propertyForm.get('rooms')?.touched || submitted)">Required</small>
+      </div>
+      <div class="innerlocationwrapper">
+        <label>Kitchen</label>
+        <input type="text" formControlName="kitchen" />
+        <small *ngIf="propertyForm.get('kitchen')?.invalid && (propertyForm.get('kitchen')?.touched || submitted)">Required</small>
+      </div>
+      <div class="innerlocationwrapper">
+        <label>Toilet</label>
+        <input type="text" formControlName="toilet" />
+        <small *ngIf="propertyForm.get('toilet')?.invalid && (propertyForm.get('toilet')?.touched || submitted)">Required</small>
+      </div>
+      <div class="innerlocationwrapper">
+        <label>Bathroom</label>
+        <input type="text" formControlName="bathroom" />
+        <small *ngIf="propertyForm.get('bathroom')?.invalid && (propertyForm.get('bathroom')?.touched || submitted)">Required</small>
+      </div>
+    </div>
+
+
+    <div class="locationwrap">
+      <div class="innerlocationwrap">
+        <label>State</label>
+        <input type="text" formControlName="state" />
+        <small *ngIf="propertyForm.get('state')?.invalid && (propertyForm.get('state')?.touched || submitted)">Required</small>
+      </div>
+      <div class="innerlocationwrap">
+        <label>LGA</label>
+        <input type="text" formControlName="lga" />
+        <small *ngIf="propertyForm.get('lga')?.invalid && (propertyForm.get('lga')?.touched || submitted)">Required</small>
+      </div>
+      <div class="innerlocationwrap">
+        <label>Country</label>
+        <input type="text" formControlName="country" />
+        <small *ngIf="propertyForm.get('country')?.invalid && (propertyForm.get('country')?.touched || submitted)">Required</small>
+      </div>
+      <div class="innerlocationwrap">
+        <label>Amount</label>
+        <input type="text" formControlName="amount" />
+        <small *ngIf="propertyForm.get('amount')?.invalid && (propertyForm.get('amount')?.touched || submitted)">
+          Enter a valid numeric amount
+        </small>
+      </div>
+    </div>
+
+
+    <div class="descriptionwrap">
+      <label>Description</label>
+      <textarea formControlName="description"></textarea>
+      <small *ngIf="propertyForm.get('description')?.invalid && (propertyForm.get('description')?.touched || submitted)">Description is required</small>
+    </div>
+
+
+    <div class="notificationwrap">
+      <div class="pixwrap">
+        <p>Choose File</p>
+        <input type="file" (change)="onImageSelected($event)" accept="image/*" />
+        <small *ngIf="propertyForm.get('imageUrl')?.invalid && (propertyForm.get('imageUrl')?.touched || submitted)">Image URL is required</small>
+      </div>
+
+
+
+    <div class="buttonwrapper">
+      <button class="btn" type="submit">Submit</button>
+    </div>
+    </div>
+
+  </div>
+</form>

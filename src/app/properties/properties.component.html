@@ -1,0 +1,49 @@
+<div class="bodywrap">
+  <div *ngFor="let property of properties; let i = index" class="boxwrapper">
+    <div class="textwrap">
+      <h2>{{ property.title }}</h2>
+      <div class="locateholder">
+        <i class="bi bi-geo-alt-fill"></i>
+        <h2>{{ property.state }}/{{ property.country }}</h2>
+      </div>
+    </div>
+
+    <div style="width: 100%; height: 300px; background-color: gray;">
+      <img [src]="property.imageUrl" alt="Property image" />
+    </div>
+
+    <div style="width: 97%; height: 10px; display: flex; justify-content: flex-end;">
+      <h2>₦{{ property.amount | number }}</h2>
+    </div>
+
+    <div class="roomwrap">
+      <h4>Rooms - {{ property.rooms }}</h4>
+      <h4>Kitchen - {{ property.kitchen }}</h4>
+      <h4>Bathroom - {{ property.bathroom }}</h4>
+      <h4>Toilet - {{ property.toilet }}</h4>
+      <h4>LGA - {{ property.lga }}</h4>
+    </div>
+
+    <h4 style="margin-top: -10px; margin-left: 10px;">
+      Description - {{ property.description }}
+    </h4>
+
+    <div class="actionbtnwrapper">
+      <div class="inneractionbtnwrapper">
+        <button (click)="openModal(i)" class="deletewrap">Delete</button>
+        <button (click)="editProperty(property, i)" class="editwrap">Edit</button>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="modal-backdrop" *ngIf="showModal">
+    <div class="modal-box">
+      <p>Are you sure you want to delete this property?</p>
+      <div class="modal-buttons">
+        <button (click)="confirmDelete()" class="btn btn-danger">Confirm</button>
+        <button (click)="closeModal()" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

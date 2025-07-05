@@ -1,0 +1,61 @@
+<div class="mainwrapper">
+  <div class="nav">
+    <div class="innernav">
+      <h2>ChillHaven</h2>
+      
+      <button class="logoutwrapper" (click)="showLogoutModal = true">LOGOUT</button>
+    </div>
+  </div>
+
+  <div class="herowrapper">
+    <div class="sidebar">
+      <div class="fullwrap">
+        <h1>Welcome</h1>
+        <h3>Mr <span style="font-size: 17px;">Joshua</span> </h3>
+
+        <!-- LISTING TAB -->
+        <div class="listwrap" (click)="navigateTo('dashboard/listing')">
+          <i class="bi bi-list"></i>
+          <span>Listing</span>
+        </div>
+
+        <!-- PROPERTIES TAB -->
+        <div class="propertywrap" (click)="navigateTo('dashboard/properties')">
+          <i class="bi bi-house-door"></i>
+          <span>My Properties</span>
+        </div>
+
+        <div class="profile" (click)="navigateTo('dashboard/profile')">
+          <i class="bi bi-person-fill"></i>
+          <span>Profile</span>
+        </div>
+
+        <!-- LOGOUT BUTTON -->
+
+
+<!-- LOGOUT CONFIRMATION MODAL -->
+<div *ngIf="showLogoutModal" class="modal-backdrop">
+  <div class="modal">
+    <h3>Are you sure you want to logout?</h3>
+    <div class="modal-buttons">
+      <button (click)="confirmLogout()">Yes</button>
+      <button (click)="cancelLogout()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+      </div>
+      <!-- <div class="logoutwrap"> -->
+
+
+      <!-- </div> -->
+
+
+    </div>
+
+    <div class="displaywarp">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
