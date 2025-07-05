@@ -12,12 +12,14 @@
 
           <small
             *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']"
+            style="color: red"
           >
             Email is required
           </small>
 
           <small
             *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']"
+             style="color: red"
           >
             Invalid email format
           </small>
