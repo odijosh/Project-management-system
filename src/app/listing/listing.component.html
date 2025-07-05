@@ -1,7 +1,7 @@
 <form [formGroup]="propertyForm" (ngSubmit)="onCreate()">
   <div class="formwrapper">
 
-    
+
     <div class="titlewrap">
       <label>Title</label>
       <input type="text" formControlName="title" />
@@ -47,7 +47,7 @@
         <small *ngIf="propertyForm.get('state')?.invalid && (propertyForm.get('state')?.touched || submitted)">Required</small>
       </div>
       <div class="innerlocationwrap">
-        <label>LGA</label>
+        <label style="font-size: 15px;">LGA</label>
         <input type="text" formControlName="lga" />
         <small *ngIf="propertyForm.get('lga')?.invalid && (propertyForm.get('lga')?.touched || submitted)">Required</small>
       </div>

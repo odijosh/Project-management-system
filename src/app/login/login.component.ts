@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../auth.service'; 
+import { AuthService } from '../auth.service';
 
 @Component({
   standalone: true,
@@ -18,7 +18,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css'],
   imports: [ReactiveFormsModule, CommonModule]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginError: string = '';
 
@@ -33,21 +33,35 @@ export class LoginComponent {
     });
   }
 
+  ngOnInit(): void {
+    
+    this.loginForm.get('password')?.valueChanges.subscribe((value: string) => {
+      if (value === 'Odi123') {
+        this.loginError = '';
+      }
+    });
+  }
 
   mustContain195(control: AbstractControl): ValidationErrors | null {
     const email = control.value || '';
-    if (!email) return null;
     return email.includes('195') ? null : { mustContain195: true };
   }
 
- onLogin() {
-  if (this.loginForm.valid) {
-    this.authService.login();
-    this.router.navigate(['/dashboard/listing']);
-  } else {
-    this.loginError = 'Please fill all required fields correctly';
-    this.loginForm.markAllAsTouched();
-  }
-}
+  onLogin() {
+    const password = this.loginForm.get('password')?.value;
 
+    if (this.loginForm.valid && password !== 'Odi123') {
+      this.loginError = 'Invalid credentials';
+      return;
+    }
+
+    if (this.loginForm.valid) {
+      this.loginError = '';
+      this.authService.login();
+      this.router.navigate(['/dashboard/listing']);
+    } else {
+      this.loginError = 'Please fill all required fields correctly';
+      this.loginForm.markAllAsTouched();
+    }
+  }
 }

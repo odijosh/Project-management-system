@@ -6,43 +6,51 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div class="logininnerwrap">
-
-        
         <div class="emailwrapper">
           <label>Email</label>
           <input type="text" formControlName="email" />
 
-          <small *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+          <small
+            *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']"
+          >
             Email is required
           </small>
 
-          <small *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']">
+          <small
+            *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']"
+          >
             Invalid email format
           </small>
 
-          <small *ngIf="
+          <small
+            *ngIf="
             loginForm.get('email')?.touched &&
             loginForm.get('email')?.value &&
             loginForm.get('email')?.errors?.['mustContainAdd195']
-          " style="color: red;">
+          "
+            style="color: red"
+          >
             Invalid credentials
           </small>
         </div>
 
-
         <div class="passwordwrapper">
           <label>Password</label>
           <input type="password" formControlName="password" />
-          <small *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']" style="color: red;">
+          <small
+            *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']"
+            style="color: red"
+          >
             Password is required
           </small>
+
+          <small
+            *ngIf="loginError === 'Invalid credentials'"
+            style="color: red"
+          >
+            {{ loginError }}
+          </small>
         </div>
-
-
-        <div *ngIf="loginError" style="color: red; margin: 10px 0;">
-          {{ loginError }}
-        </div>
-
 
         <button class="loginbutton" type="submit">LOGIN</button>
       </div>
